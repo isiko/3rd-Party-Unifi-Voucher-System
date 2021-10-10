@@ -1,0 +1,33 @@
+﻿version: "3.8"
+
+services:
+  frontend:
+    container_name: unifi-voucher-frontend
+    image: unifi-voucher-frontend
+    # enviroment variables dont actually do anything, u have to define them in .env
+    environment:
+      REACT_APP_BACKEND_PORT: 3000
+      REACT_APP_BACKEND_URL: PUT_YOUR_BACKEN_URL_HERE
+    build:
+      context: ./frontend
+      target: production
+    ports:
+      - 80:80
+  backend:
+    container_name: unfi-voucher-backend
+    image: unifi-voucher-backend
+    environment:
+      ACCESS_TOKEN_SECRET: LONG_RANDOM_CHARS
+      REFRESH_TOKEN_SECRET: LONG_RANDOM_CHARS
+      DB_HOST: DATABASE_URL
+      DB_USER: DATABASE_USER
+      DB_PASSWORD: DATABASE_USER_PASSWORD
+      DB_DATABASE: DATABASE
+      UNIFI_HOST: UNIFI_URL
+      UNIFI_PORT: UNIFI_PORT
+      UNIFI_USER: UNIFI_USER
+      UNIFI_PASS: UNIFI_USER_PASSWORD
+    build:
+      context: ./backend
+    ports:
+      - 3000:3000
