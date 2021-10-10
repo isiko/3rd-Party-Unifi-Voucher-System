@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: lvd-voucher-frontend
+    image: lvd-voucher-frontend
+    # enviroment variables dont actually do anything, u have to define them in .env
+    # But you'll probably need them when using docker
+    environment:
+      REACT_APP_BACKEND_PORT: 3000
+      REACT_APP_BACKEND_URL: PUT_YOUR_BACKEN_URL_HERE
+    build:
+      context: .
+      target: production
+    ports:
+      - 80:80

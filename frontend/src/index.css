@@ -1,0 +1,215 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    --main-Color: #A51A3E;
+    --light-color: #BD8185;
+    --bg-color: #282c34;
+    --accent-color: white;
+    --accent-color-light: #D28D9F;
+    --accent-color-dark: #530D1F;
+    --dark-color:#2F4858;
+
+    --text-color-light: white;
+    --text-color-dark: black;
+    --text-color: var(--text-color-light);
+
+    --textbox-bg-color: white;
+    background-color: var(--bg-color);
+    font-size: calc(10px + 2vmin);
+    color: var(--text-color);
+    text-align: center;
+    min-height: 100vh;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+#root, #homeScreen {
+    min-height: 100vh;
+}
+
+/*General Styling Classes*/
+/*Todo get center to fill the whole Screen*/
+.center, .darkContainer, .centerFullscreen{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition-duration: 0.1s;
+    width: 100%;
+}
+
+.centerFullscreen {
+    width: 100%;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.darkContainer, .highlightContainer {
+    padding: 20px;
+    border-radius: 20px;
+    margin: 10px;
+}
+
+.darkContainer {
+    background-color: var(--dark-color);
+    width: 50%;
+}
+
+.highlightContainer {
+    background-color: var(--main-Color);
+    width: 100%;
+}
+
+/*Screen Specifics*/
+/*region Login*/
+#loginScreen {
+    width: 70%;
+}
+
+#loginForm {
+    width: 50%;
+}
+
+#title {
+    margin: 20px;
+}
+/*endregion*/
+
+/*region Generator*/
+#tickets {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+}
+
+.generatorScreen{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#specificVoucherContainer, #specificUserContainer {
+    width: 50%;
+}
+/*endregion*/
+
+/*region Tickets / specific Voucher*/
+#entryData {
+    flex-direction: row;
+}
+/*endregion*/
+
+/*HTML-Tags*/
+/*region Navigation Bar*/
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: var(--main-Color);
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: var(--text-color);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: var(--accent-color-dark);
+}
+/*endregion*/
+
+/*region Table Styling*/
+table {
+    width: 100%;
+}
+tr {
+    width: 100%;
+}
+
+th, td {
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: calc(2vh + 10px);
+}
+
+.left {
+    text-align: right;
+}
+
+.right {
+    text-align: left;
+}
+
+.inner {
+    width: 20%;
+}
+
+.outer {
+    width: 30%;
+}
+/*endregion*/
+
+/*region Inputs*/
+input {
+    width: 100%;
+    padding: 6px 10px;
+    margin: 2px 0;
+    font-size: 20px;
+    box-sizing: border-box;
+    border-radius: 6px;
+    background-color: var(--textbox-bg-color);
+}
+
+input[type=submit], input[type=button]{
+    margin: 10px 0px;
+    background-color: var(--main-Color);
+    border-width: 0;
+    border-radius: 5px;
+    transition-duration: 0.1s;
+    color: var(--text-color);
+}
+
+input[type=submit]:active, input[type=button]:active {
+    background-color: var(--accent-color-dark);
+}
+/*endregion*/
+
+/*region Text*/
+h1, h2, h3, h5, p{
+    padding: 0px;
+    margin: 0px;
+}
+
+p {
+    padding: 0px 10px;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+/*endregion*/
