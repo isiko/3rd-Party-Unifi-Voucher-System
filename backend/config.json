@@ -1,0 +1,26 @@
+{
+  "port": 3000,
+  "accessTokenRefreshRate": "15m",
+  "databaseConfig": {
+    "createDatabaseOnStartup": false
+  },
+  "maxTextLength": 128,
+  "log4js": {
+    "appenders": {
+      "fileAppender": {
+        "type": "file", "filename": "./logs/Loggs.log"
+      },
+      "console": {
+        "type": "console"
+      }
+    },
+    "categories": {
+      "default":                    { "appenders": ["console", "fileAppender"],   "level": "info" },
+      "database":                   { "appenders": ["console", "fileAppender"],   "level": "info" },
+      "'database.databaseCheck'":   { "appenders": ["console"],                   "level": "info" },
+      "authentication":             { "appenders": ["console", "fileAppender"],   "level": "info" },
+      "vouchers":                   { "appenders": ["console", "fileAppender"],   "level": "info" },
+      "administration":             { "appenders": ["console", "fileAppender"],   "level": "info" }
+    }
+  }
+}
