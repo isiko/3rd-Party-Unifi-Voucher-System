@@ -16,15 +16,43 @@ databaseCheckLogger = log4js.getLogger('database.databaseCheck');
 let tables = [
     {
         "name":"refreshTokens",
-        "sqlArguments":"id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, userid INT(6) NOT NULL, token TEXT NOT NULL"
+        "SQL": `Create TABLE refreshTokens (
+            id int AUTO_INCREMENT NOT NULL,
+            userid int NOT NULL,
+            token text NOT NULL,
+            PRIMARY KEY (id),
+            Foreign KEY (userid) REFERENCES users(id)
+        );`
     },
     {
         "name":"users",
-        "sqlArguments":"id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, username TEXT NOT NULL, password TEXT NOT NULL, `privilege_level` INT(1)"
+        "SQL":`CREATE TABLE users (
+            id int AUTO_INCREMENT NOT NULL,
+            username text NOT NULL,
+            password text NOT NULL,
+            privilege_level int,
+            PRIMARY KEY (id)
+        );`
     },
     {
         "name":"vouchers",
-        "sqlArguments":"id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, userid INT(6), `_id` CHAR(24), `create_time` INT(11) UNSIGNED, `code` CHAR(10), `quota` int, `duration` int, `qos_usage_quota` int, `qos_rate_max_up` int, `qos_rate_max_down` int, `qos_overwrite` boolean, note text, `status_expires` int(11)"
+        "SQL":`CREATE TABLE vouchers (
+            id int AUTO_INCREMENT NOT NULL,
+            userid int NOT NULL,
+            _id char(24),
+            create_time int,
+            code char(10),
+            quota int,
+            duration int,
+            qos_usage_quota int,
+            qos_rate_max_up int, 
+            qos_rate_max_down int,
+            qos_overwrite bool,
+            note text,
+            status_expires int,
+            PRIMARY KEY (id),
+            FOREIGN KEY (userid) REFERENCES users(id)
+        );`
     }
 ]
 
@@ -55,7 +83,7 @@ dbCheck.query("Use " + process.env.DB_DATABASE + ";", (err) => {
 
 //Create Tables
 tables.forEach(element => {
-    dbCheck.query("Create table IF NOT EXISTS " + element.name + " ( " + element.sqlArguments + " ) ;", (err) => {
+    dbCheck.query(element.SQL, (err) => {
         if (err) databaseCheckLogger.error(err)
         databaseCheckLogger.info('[DBCHECK] Creating Table ' + element.name)
     })
