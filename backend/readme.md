@@ -28,6 +28,11 @@ Dafür einfach folgenden Befehl eingeben(wenn ihr keine .env Datei habt solltet 
 node index.js
 ````
 
+###Troubleshooting
+Wenn es einen Fehler mit der Datenbank giebt, kann das Setup für diese auch einfach so asugeführt werden. Der Befehl dazu lautet wie folgt:
+
+> npm run setupDB
+
 ## How to Use
 Die erste Anfrage, die eine mögliche Applikation stellen sollte, sollte an [/auth/login](#post-login) gehen.
 Damit wird der Nutzer eingeloggt und die Applikation erhält ein Access und ein Refresh Token. Was es mit diesen auf sich hat, erkläre ich [hier](#auth). Weiter Access Tokens können mithilfe von [dieser Route (/auth/token)](#post-token) erstellt werden. Wenn der Nutzer dann angemeldet ist und die Applikation ein aktives Access Token hat, kann mithilfe der Route /voucher das Vouchersystem benutzt werden. Am wichtigsten ist hier die [Route /vouchers/new](#post-new), womit neue Vouchers erstellt werden können. Mit einer einfachen Anfrage an [/vouchers](#get-) können alle Voucher des aktuellen Nutzers angezeigt werden. Für weitere Informationen lese dir bitte die folgende [Sektion zu den Endpoints](#endpoints) durch. Dort sind auch noch einige Informationen zu den Möglichkeiten der Administration aufgeführt.
