@@ -63,19 +63,14 @@ function verifyRefreshToken(token, callback) {
             callback(false)
             return
         }
-        dbTools.sqliProtectedQuerry("SELECT userid FROM refreshTokens WHERE token = ? AND id = ?", [content.token.token, content.token.id],
-            (err, result)=>{
+        dbTools.sqliProtectedQuerry("SELECT * FROM users WHERE id IN (SELECT userid FROM refreshTokens WHERE token = ? AND id = ?)", [content.token.token, content.token.id],
+            (err, user)=>{
                 if (err) databaseLogger.error(err)
-                if (result.length > 0) {
-                    dbTools.sqliProtectedQuerry("SELECT * FROM users WHERE id = ?", [result[0].userid],
-                        (err, user) => {
-                            if (err) databaseLogger.error(err)
-                            let fountUser = user !== undefined
-                            authenticationLogger.info('Verified Refresh Token for user ' + user[0].username)
-                            user[0].password = content.user.password
-                            callback(fountUser, user[0])
-                        }
-                    )
+                if (user.length > 0) {
+                    let foundUser = user !== undefined
+                    authenticationLogger.info('Verified Refresh Token for user ' + user[0].username)
+                    user[0].password = content.user.password
+                    callback(foundUser, user[0])
                 } else {
                     authenticationLogger.warn('Refresh Token could not be verified')
                     callback(false)
