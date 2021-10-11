@@ -11,7 +11,7 @@ const config = JSON.parse(require('fs').readFileSync('./config.json'));
 //Setting up Logger
 config.log4js.appenders.fileAppender.filename = "./logs/databaseSetup/" + new Date().toISOString().replace(':', '-') + ".log"
 log4js.configure(config.log4js);
-databaseLogger = log4js.getLogger('database.databaseCheck');
+databaseCheckLogger = log4js.getLogger('database.databaseCheck');
 
 let tables = [
     {
@@ -37,27 +37,27 @@ const dbCheck = mysql.createConnection({
 
 //Connect to Database
 dbCheck.connect((err) => {
-    if (err) databaseLogger.error(err)
-    databaseLogger.info('[DBCHECK] Connected to Database')
+    if (err) databaseCheckLogger.error(err)
+    databaseCheckLogger.info('[DBCHECK] Connected to Database')
 })
 
 //Check if Database exists
 dbCheck.query("CREATE DATABASE IF NOT EXISTS " + process.env.DB_DATABASE + ";", (err) => {
-    if (err) databaseLogger.error(err)
-    databaseLogger.info('[DBCHECK] Creating Database')
+    if (err) databaseCheckLogger.error(err)
+    databaseCheckLogger.info('[DBCHECK] Creating Database')
 })
 
 //Use Database
 dbCheck.query("Use " + process.env.DB_DATABASE + ";", (err) => {
-    if (err) databaseLogger.error(err)
-    databaseLogger.info('[DBCHECK] Using Database')
+    if (err) databaseCheckLogger.error(err)
+    databaseCheckLogger.info('[DBCHECK] Using Database')
 })
 
 //Create Tables
 tables.forEach(element => {
     dbCheck.query("Create table IF NOT EXISTS " + element.name + " ( " + element.sqlArguments + " ) ;", (err) => {
-        if (err) databaseLogger.error(err)
-        databaseLogger.info('[DBCHECK] Creating Table ' + element.name)
+        if (err) databaseCheckLogger.error(err)
+        databaseCheckLogger.info('[DBCHECK] Creating Table ' + element.name)
     })
 })
 
