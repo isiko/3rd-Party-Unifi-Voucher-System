@@ -2,6 +2,7 @@
 import voucherToolbox from "../../toolboxes/voucherToolbox";
 import LoadingIndicator from "../../components/loader";
 import UserListEntry from "../../components/userSummary";
+import NotFoundErrorMessage from "../../components/errorNotFound";
 
 class userListScreen extends React.Component{
     
@@ -42,7 +43,7 @@ class userListScreen extends React.Component{
                     ? <LoadingIndicator/>
                     : this.state.users && this.state.users.length>0
                         ? this.state.users && this.state.users.slice(0).map((user,index) => <UserListEntry userData={user}/>)
-                        : <h3>Sorry, wir haben nix gefunden :'(</h3>
+                        : <NotFoundErrorMessage/>
                 }
             </div>
         )

@@ -2,6 +2,7 @@
 import voucherToolbox from "../../toolboxes/voucherToolbox";
 import LoadingIndicator from "../../components/loader";
 import TicketListEntry from "../../components/voucherSummary";
+import NotFoundErrorMessage from "../../components/errorNotFound";
 
 class adminTicketListScreen extends React.Component{
     intervalID = 0
@@ -41,7 +42,7 @@ class adminTicketListScreen extends React.Component{
                         ? <LoadingIndicator/>
                         : this.state.tickets && this.state.tickets.length > 0
                             ? this.state.tickets && this.state.tickets.slice(0).reverse().map((ticket, index) => <TicketListEntry ticketData={ticket} key={index}/>)
-                            : <h3> Sorry, es gibt anscheinend noch keine Tickets :(</h3>
+                            : <NotFoundErrorMessage/>
                 }
             </div>
         )

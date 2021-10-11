@@ -57,7 +57,7 @@ class Login extends React.Component {
                     <div className="centerFullscreen" id="loginScreen">
                         <div id="title">
                             <h1>Login</h1>
-                            <p>LvD Wlan Voucher System</p>
+                            <p>{process.env.REACT_APP_SYSTEM_NAME}</p>
                         </div>
                         <form onSubmit={this.handleSubmit} id="loginForm">
                             <input type="text" placeholder="Username" onChange={this.handleUsernameChange}/>

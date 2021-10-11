@@ -2,6 +2,7 @@ import React from "react";
 import voucherToolbox from "../../toolboxes/voucherToolbox";
 import TicketListEntry from "../../components/voucherSummary";
 import LoadingIndicator from "../../components/loader";
+import GeneralErrorMessage from "../../components/errorMessage";
 
 class ticketScreen extends React.Component {
     intervalID = 0
@@ -39,7 +40,7 @@ class ticketScreen extends React.Component {
                         ? <LoadingIndicator/>
                         : this.state.tickets && this.state.tickets.length>0
                             ? this.state.tickets && this.state.tickets.slice(0).reverse().map((ticket, index) => <TicketListEntry ticketData={ticket} key={index}/>)
-                            :<h3>Sorry, we didn't find anything :(</h3>
+                            :<GeneralErrorMessage/>
 
                 }
             </div>
