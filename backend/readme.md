@@ -1,6 +1,4 @@
-# UniFi-Backend
-Dies ist ein kleines Backend für das Vouchersystem
-
+# Backend
 ## Voraussetzungen
 Das Backend läuft auf Node.JS, was deshalb natürlich installiert sein sollte. Abgesehene davon benötigt das System Zugang
 zu einer MySQL-Datenbank und natürlich dem Unifi Controller. Die Zugangsdaten sollten in der config.json Datei hinterlegt sein.
