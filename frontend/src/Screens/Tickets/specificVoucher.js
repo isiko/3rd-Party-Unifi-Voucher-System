@@ -2,6 +2,7 @@ import React from "react";
 import voucherToolbox from "../../toolboxes/voucherToolbox";
 import {Redirect} from "react-router";
 import LoadingIcon from "../../components/loader";
+import GeneralErrorMessage from "../../components/errorMessage";
 
 class SpecificVoucherScreen extends React.Component {
     constructor(props) {
@@ -102,7 +103,7 @@ class SpecificVoucherScreen extends React.Component {
                                 <input type="submit" value="Delete" id="delete" onClick={this.deleteThis}/>
                             </div>
                         :
-                        <h1>sorry, we didn't find anything :(</h1>}
+                        <GeneralErrorMessage/>}
             </div>
         );
     }

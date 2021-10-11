@@ -2,6 +2,7 @@
 import voucherToolbox from "../../toolboxes/voucherToolbox";
 import LoadingIndicator from "../../components/loader";
 import {Redirect} from "react-router";
+import NotFoundErrorMessage from "../../components/errorNotFound";
 
 class adminUserDataScreen extends React.Component{
     options = {}
@@ -113,7 +114,7 @@ class adminUserDataScreen extends React.Component{
                                 </form>
                             </div>
                         :
-                        <h1>sorry, we didn't find anything :(</h1>}
+                        <NotFoundErrorMessage/>}
             </div>
         )
     }
