@@ -22,7 +22,7 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "log4js": "^6.3.0",
-    "mysql": "^2.18.1",
+    "mysql2": "^2.3.0",
     "node-unifi": "^1.4.0"
   },
   "devDependencies": {}

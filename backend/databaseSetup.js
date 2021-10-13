@@ -1,5 +1,4 @@
-//TODO Probably redo this
-const mysql = require('mysql')
+const mysql = require('mysql2')
 const log4js = require('log4js')
 require('dotenv').config()
 const config = JSON.parse(require('fs').readFileSync('./config.json'));
