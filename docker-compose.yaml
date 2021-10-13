@@ -1,6 +1,15 @@
 ﻿version: "3.8"
 
 services:
+  database:
+    container_name: unifi-voucher-database
+    image: mysql
+    environment:
+      MYSQL_DATABASE: DATABASE
+      MYSQL_USER: DATABASE_USER
+      MYSQL_PASSWORD: DATABASE_USER_PASSWORD
+    ports:
+      - 3306:3306
   frontend:
     container_name: unifi-voucher-frontend
     image: unifi-voucher-frontend
@@ -14,8 +23,9 @@ services:
     ports:
       - 80:80
   backend:
-    container_name: unfi-voucher-backend
+    container_name: unifi-voucher-backend
     image: unifi-voucher-backend
+    restart: always
     environment:
       ACCESS_TOKEN_SECRET: LONG_RANDOM_CHARS
       REFRESH_TOKEN_SECRET: LONG_RANDOM_CHARS
@@ -27,6 +37,8 @@ services:
       UNIFI_PORT: UNIFI_PORT
       UNIFI_USER: UNIFI_USER
       UNIFI_PASS: UNIFI_USER_PASSWORD
+    depends_on:
+      - database
     build:
       context: ./backend
     ports:
