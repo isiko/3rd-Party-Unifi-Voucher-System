@@ -16,7 +16,7 @@ databaseCheckLogger = log4js.getLogger('database.databaseCheck');
 let tables = [
     {
         "name":"refreshTokens",
-        "SQL": `Create TABLE refreshTokens (
+        "SQL": `(
             id int AUTO_INCREMENT NOT NULL,
             userid int NOT NULL,
             token text NOT NULL,
@@ -26,7 +26,7 @@ let tables = [
     },
     {
         "name":"users",
-        "SQL":`CREATE TABLE users (
+        "SQL":`(
             id int AUTO_INCREMENT NOT NULL,
             username text NOT NULL,
             password text NOT NULL,
@@ -36,7 +36,7 @@ let tables = [
     },
     {
         "name":"vouchers",
-        "SQL":`CREATE TABLE vouchers (
+        "SQL":`(
             id int AUTO_INCREMENT NOT NULL,
             userid int NOT NULL,
             _id char(24),
@@ -83,7 +83,7 @@ dbCheck.query("Use " + process.env.DB_DATABASE + ";", (err) => {
 
 //Create Tables
 tables.forEach(element => {
-    dbCheck.query(element.SQL, (err) => {
+    dbCheck.query(`CREATE TABLE IF NOT EXISTS ${element.name} ${element.SQL}`, (err) => {
         if (err) databaseCheckLogger.error(err)
         databaseCheckLogger.info('[DBCHECK] Creating Table ' + element.name)
     })
