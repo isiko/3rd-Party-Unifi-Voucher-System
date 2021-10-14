@@ -15,6 +15,7 @@ class ticketScreen extends React.Component {
         this.loadTickets = this.loadTickets.bind(this)
     }
 
+    //TODO add Search Parameters
     loadTickets() {
         voucherToolbox.getOwnVouchers((code, data)=>{
             this.setState({tickets: data, loading: false})
@@ -41,7 +42,6 @@ class ticketScreen extends React.Component {
                         : this.state.tickets && this.state.tickets.length>0
                             ? this.state.tickets && this.state.tickets.slice(0).reverse().map((ticket, index) => <TicketListEntry ticketData={ticket} key={index}/>)
                             :<GeneralErrorMessage/>
-
                 }
             </div>
         );

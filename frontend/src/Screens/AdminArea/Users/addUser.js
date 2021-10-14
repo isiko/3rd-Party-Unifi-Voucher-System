@@ -1,5 +1,5 @@
 ﻿import React from "react";
-import voucherToolbox from "../../toolboxes/voucherToolbox";
+import voucherToolbox from "../../../toolboxes/voucherToolbox";
 import {Redirect} from "react-router";
 
 class addUserScreen extends React.Component{
@@ -33,10 +33,10 @@ class addUserScreen extends React.Component{
         return(
             this.state.redirect === false
             ? <div className="center centerFullscreen">
-                    <h1>Add User here</h1>
+                    <h1>Hier Nutzer hinzufügen</h1>
                     <form onSubmit={this.handleSubmit}>
-                        <input type="text" id="username" onChange={this.handleFieldChange} placeholder="Username"/>
-                        <input type="password" id="password" onChange={this.handleFieldChange} placeholder="Password"/>
+                        <input type="text" id="username" onChange={this.handleFieldChange} placeholder="Name"/>
+                        <input type="password" id="password" onChange={this.handleFieldChange} placeholder="Passwort"/>
                         <input type="submit" value="Hinzufügen"/>
                     </form>
                 </div>

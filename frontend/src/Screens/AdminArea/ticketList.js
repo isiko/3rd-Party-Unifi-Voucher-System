@@ -12,7 +12,6 @@ class adminTicketListScreen extends React.Component{
             tickets: [],
             loading: true
         }
-        
         this.loadTickets = this.loadTickets.bind(this)
     }
     
@@ -21,6 +20,7 @@ class adminTicketListScreen extends React.Component{
         voucherToolbox.listAllVouchers((code, data) => {
             this.setState({tickets:data, loading:false})
         })
+        console.log(this.state.tickets)
     }
     
     componentDidMount() {
@@ -32,7 +32,7 @@ class adminTicketListScreen extends React.Component{
         if (this.intervalID !== null) clearInterval(this.intervalID)
     }
 
-    //TODO redo Entrys to add user
+    
     render() {
         return(
             <div className="center">

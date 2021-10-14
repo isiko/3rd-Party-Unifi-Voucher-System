@@ -2,10 +2,10 @@
 import Cookies from "universal-cookie";
 import {Link, Route, Switch} from "react-router-dom";
 import {Redirect} from "react-router";
-import addUserScreen from "./addUser";
-import userListScreen from "./userList";
+import addUserScreen from "./Users/addUser";
+import userListScreen from "./Users/userList";
 import adminTicketListScreen from "./ticketList";
-import adminUserDataScreen from "./userData";
+import adminUserDataScreen from "./Users/userData";
 
 const cookies = new Cookies();
 
@@ -16,12 +16,9 @@ class AdminScreen extends React.Component {
                 <div>
                     <nav className="navbar navbar-expand-lg navbar-light bg-light">
                         <ul className="navbar-nav mr-auto">
-                            <li style={{float: "center"}}><Link to={'/admin/userList'} className="nav-link">User List</Link>
-                            </li>
-                            <li style={{float: "center"}}><Link to={'/admin/addUser'} className="nav-link">Add new User</Link>
-                            </li>
-                            <li style={{float: "center"}}><Link to={'/admin/ticketList'} className="nav-link">Complete Ticket
-                                List</Link></li>
+                            <li style={{float: "center"}}><Link to={'/admin/userList'} className="nav-link">Nutzerliste</Link></li>
+                            <li style={{float: "center"}}><Link to={'/admin/addUser'} className="nav-link">Nutzer Hinzufügen</Link></li>
+                            <li style={{float: "center"}}><Link to={'/admin/ticketList'} className="nav-link">Alle Tickets</Link></li>
                         </ul>
                     </nav>
                     <Switch>
