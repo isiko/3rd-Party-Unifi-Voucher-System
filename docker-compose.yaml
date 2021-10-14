@@ -7,6 +7,8 @@ services:
     environment:
       MYSQL_DATABASE: DATABASE
       MYSQL_ROOT_PASSWORD: ROOT_PASSWORD
+    volumes:
+      - db-data:/var/lib/mysql
       
   frontend:
     container_name: unifi-voucher-frontend
@@ -20,6 +22,8 @@ services:
       target: production
     ports:
       - 80:80
+    volumes:
+      - app-data:/app
     
   backend:
     container_name: unifi-voucher-backend
@@ -42,3 +46,9 @@ services:
       context: ./backend
     ports:
       - 3000:3000
+    volumes:
+      - app-data:/app
+
+volumes:
+  db-data:
+  app-data:
