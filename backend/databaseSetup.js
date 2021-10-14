@@ -14,16 +14,6 @@ databaseCheckLogger = log4js.getLogger('database.databaseCheck');
 
 let tables = [
     {
-        "name":"refreshTokens",
-        "SQL": `(
-            id int AUTO_INCREMENT NOT NULL,
-            userid int NOT NULL,
-            token text NOT NULL,
-            PRIMARY KEY (id),
-            Foreign KEY (userid) REFERENCES users(id)
-        );`
-    },
-    {
         "name":"users",
         "SQL":`(
             id int AUTO_INCREMENT NOT NULL,
@@ -31,6 +21,16 @@ let tables = [
             password text NOT NULL,
             privilege_level int,
             PRIMARY KEY (id)
+        );`
+    },
+    {
+        "name":"refreshTokens",
+        "SQL": `(
+            id int AUTO_INCREMENT NOT NULL,
+            userid int NOT NULL,
+            token text NOT NULL,
+            PRIMARY KEY (id),
+            Foreign KEY (userid) REFERENCES users(id)
         );`
     },
     {
@@ -60,6 +60,7 @@ const dbCheck = mysql.createConnection({
     "host": process.env.DB_HOST,
     "user": process.env.DB_USER,
     "password": process.env.DB_PASSWORD,
+    "database": process.env.DB_DATABASE
 })
 
 //Connect to Database
