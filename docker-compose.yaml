@@ -6,10 +6,8 @@ services:
     image: mysql
     environment:
       MYSQL_DATABASE: DATABASE
-      MYSQL_USER: DATABASE_USER
-      MYSQL_PASSWORD: DATABASE_USER_PASSWORD
-    ports:
-      - 3306:3306
+      MYSQL_ROOT_PASSWORD: ROOT_PASSWORD
+      
   frontend:
     container_name: unifi-voucher-frontend
     image: unifi-voucher-frontend
@@ -22,6 +20,7 @@ services:
       target: production
     ports:
       - 80:80
+    
   backend:
     container_name: unifi-voucher-backend
     image: unifi-voucher-backend
@@ -29,9 +28,9 @@ services:
     environment:
       ACCESS_TOKEN_SECRET: LONG_RANDOM_CHARS
       REFRESH_TOKEN_SECRET: LONG_RANDOM_CHARS
-      DB_HOST: DATABASE_URL
-      DB_USER: DATABASE_USER
-      DB_PASSWORD: DATABASE_USER_PASSWORD
+      DB_HOST: database
+      DB_USER: root
+      DB_PASSWORD: ROOT_PASSWORD
       DB_DATABASE: DATABASE
       UNIFI_HOST: UNIFI_URL
       UNIFI_PORT: UNIFI_PORT
