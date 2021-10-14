@@ -61,7 +61,6 @@ router.post('/token', async (req, res) => {
 /**
  * Logs a user out when given a Refresh Token. At the Moment it just deletes all Refresh Tokens from that User
  */
-//Todo use Subquerrys to reduce amount of querys sent
 router.delete('/logout', (req, res) =>{
     defaultLogger.info('Got Request to loggout user')
     authTools.verifyRefreshToken(req.body.token, (userFound, user)=>{

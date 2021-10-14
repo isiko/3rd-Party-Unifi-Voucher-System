@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const bcrypt = require('bcrypt');
 
 //Connecting to Database
@@ -45,7 +45,8 @@ function checkStringLength(str){
 async function sqliProtectedQuerry(query, data, callback = function (err){if (err) databaseLogger.error(err)}){
     let sql = mysql.format(query, data)
     databaseLogger.info('Sending Query of type "' + sql.split(' ')[0] + '"')
-    await db.query(sql, callback)
+    //Todo Add await 
+    db.query(sql, callback)
 }
 
 //Todo Decide what to do when more than one user is found

@@ -1,5 +1,4 @@
-//TODO Probably redo this
-const mysql = require('mysql')
+const mysql = require('mysql2')
 const log4js = require('log4js')
 require('dotenv').config()
 const config = JSON.parse(require('fs').readFileSync('./config.json'));
@@ -15,18 +14,8 @@ databaseCheckLogger = log4js.getLogger('database.databaseCheck');
 
 let tables = [
     {
-        "name":"refreshTokens",
-        "SQL": `Create TABLE refreshTokens (
-            id int AUTO_INCREMENT NOT NULL,
-            userid int NOT NULL,
-            token text NOT NULL,
-            PRIMARY KEY (id),
-            Foreign KEY (userid) REFERENCES users(id)
-        );`
-    },
-    {
         "name":"users",
-        "SQL":`CREATE TABLE users (
+        "SQL":`(
             id int AUTO_INCREMENT NOT NULL,
             username text NOT NULL,
             password text NOT NULL,
@@ -35,8 +24,18 @@ let tables = [
         );`
     },
     {
+        "name":"refreshTokens",
+        "SQL": `(
+            id int AUTO_INCREMENT NOT NULL,
+            userid int NOT NULL,
+            token text NOT NULL,
+            PRIMARY KEY (id),
+            Foreign KEY (userid) REFERENCES users(id)
+        );`
+    },
+    {
         "name":"vouchers",
-        "SQL":`CREATE TABLE vouchers (
+        "SQL":`(
             id int AUTO_INCREMENT NOT NULL,
             userid int NOT NULL,
             _id char(24),
@@ -61,6 +60,7 @@ const dbCheck = mysql.createConnection({
     "host": process.env.DB_HOST,
     "user": process.env.DB_USER,
     "password": process.env.DB_PASSWORD,
+    "database": process.env.DB_DATABASE
 })
 
 //Connect to Database
@@ -83,7 +83,7 @@ dbCheck.query("Use " + process.env.DB_DATABASE + ";", (err) => {
 
 //Create Tables
 tables.forEach(element => {
-    dbCheck.query(element.SQL, (err) => {
+    dbCheck.query(`CREATE TABLE IF NOT EXISTS ${element.name} ${element.SQL}`, (err) => {
         if (err) databaseCheckLogger.error(err)
         databaseCheckLogger.info('[DBCHECK] Creating Table ' + element.name)
     })
