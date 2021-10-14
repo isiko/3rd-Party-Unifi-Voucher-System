@@ -102,13 +102,13 @@ class adminUserDataScreen extends React.Component{
                                     <table>
                                         <tr>
                                             <td className="left"><input onChange={this.onChange} id="privilege_level" type="number" value={this.state.options.privilege_level}/></td>
-                                            <td className="right"><input onChange={this.onChange} id="newPassword" type="password" placeholder="new Password" /></td>
+                                            <td className="right"><input onChange={this.onChange} id="newPassword" type="password" placeholder="Neues Passwort" /></td>
                                         </tr>
                                         <tr>
-                                            <td className="left"><input type="submit" value="Change Privilege Level" id="privilege_level"/></td>
-                                            <td className="left"><input type="submit" value="Change Password" id="newPassword"/></td>
+                                            <td className="left"><input type="submit" value="Rang ändern" id="privilege_level"/></td>
+                                            <td className="left"><input type="submit" value="Passwort ändern" id="newPassword"/></td>
                                         </tr>
-                                        <tr><th colSpan="2"><input type="button" value="Delete" id="delete" onClick={this.deleteUser}/></th></tr>
+                                        <tr><th colSpan="2"><input type="button" value="Nutzer entfernen" id="delete" onClick={this.deleteUser}/></th></tr>
                                         {/*TODO add button linking to Tickets*/}
                                     </table>
                                 </form>

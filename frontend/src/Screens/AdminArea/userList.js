@@ -46,8 +46,8 @@ class userListScreen extends React.Component{
                                 <table className="highlightContainer userList">
                                     <tr>
                                         <th className="userListEntry">ID</th>
-                                        <th className="userListEntry">Username</th>
-                                        <th className="userListEntry">Privilige Level</th>
+                                        <th className="userListEntry">Nutzername</th>
+                                        <th className="userListEntry">Rang</th>
                                     </tr>
                                     {this.state.users && this.state.users.slice(0).map((user, index) => 
                                         <tr className="userListEntry">
