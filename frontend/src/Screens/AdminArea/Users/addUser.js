@@ -1,5 +1,5 @@
 ﻿import React from "react";
-import voucherToolbox from "../../toolboxes/voucherToolbox";
+import voucherToolbox from "../../../toolboxes/voucherToolbox";
 import {Redirect} from "react-router";
 
 class addUserScreen extends React.Component{

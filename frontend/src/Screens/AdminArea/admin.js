@@ -2,10 +2,10 @@
 import Cookies from "universal-cookie";
 import {Link, Route, Switch} from "react-router-dom";
 import {Redirect} from "react-router";
-import addUserScreen from "./addUser";
-import userListScreen from "./userList";
+import addUserScreen from "./Users/addUser";
+import userListScreen from "./Users/userList";
 import adminTicketListScreen from "./ticketList";
-import adminUserDataScreen from "./userData";
+import adminUserDataScreen from "./Users/userData";
 
 const cookies = new Cookies();
 

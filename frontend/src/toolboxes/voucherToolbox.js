@@ -200,12 +200,12 @@ function listAllVouchers(callback, inputParams = {id: undefined, userid: undefin
     if (inputParams.userid) searchParams.userid = inputParams.userid
     if (inputParams.code) searchParams.code = inputParams.code
     if (inputParams.note) searchParams.note = inputParams.note
-    console.log(searchParams)
     
     backendRequest((code, data) => {
         switch(code){
             case 200:
                 callback(code, data)
+                break;
             case 403:
             case 500:
             default:
@@ -261,7 +261,6 @@ function addUser(callback, username, password) {
 
 function addUsers(callback, users) {
     console.log(`Creating Users`)
-    console.log(users)
     backendRequest((code, data) => {
         switch(code){
             case 201:

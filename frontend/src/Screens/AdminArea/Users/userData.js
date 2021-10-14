@@ -1,8 +1,8 @@
 ﻿import React from "react";
-import voucherToolbox from "../../toolboxes/voucherToolbox";
-import LoadingIndicator from "../../components/loader";
+import voucherToolbox from "../../../toolboxes/voucherToolbox";
+import LoadingIndicator from "../../../components/loader";
 import {Redirect} from "react-router";
-import NotFoundErrorMessage from "../../components/errorNotFound";
+import NotFoundErrorMessage from "../../../components/errorNotFound";
 
 class adminUserDataScreen extends React.Component{
     options = {}

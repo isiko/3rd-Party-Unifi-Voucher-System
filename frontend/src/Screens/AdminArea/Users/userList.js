@@ -1,7 +1,7 @@
 ﻿import React from "react";
-import voucherToolbox from "../../toolboxes/voucherToolbox";
-import LoadingIndicator from "../../components/loader";
-import NotFoundErrorMessage from "../../components/errorNotFound";
+import voucherToolbox from "../../../toolboxes/voucherToolbox";
+import LoadingIndicator from "../../../components/loader";
+import NotFoundErrorMessage from "../../../components/errorNotFound";
 import {Link} from "react-router-dom";
 
 class userListScreen extends React.Component{
