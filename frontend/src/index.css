@@ -115,6 +115,26 @@ code {
 }
 /*endregion*/
 
+/*region Admin Userlist*/
+.userListEntry {
+    /*width: 25%;*/
+    padding-left: 0px;
+    padding-right: 0px;
+    background: transparent;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+tr:nth-child(even) .userListEntry{
+    background: var(--accent-color-dark);
+}
+
+.userList {
+    border-width: 0;
+}
+
+/*endregion*/
+
 /*HTML-Tags*/
 /*region Navigation Bar*/
 ul {
