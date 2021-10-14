@@ -72,6 +72,10 @@ code {
     width: 100%;
 }
 
+.highlightText {
+    color: var(--main-Color)
+}
+
 /*Screen Specifics*/
 /*region Login*/
 #loginScreen {

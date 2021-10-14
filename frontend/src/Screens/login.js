@@ -14,6 +14,7 @@ class Login extends React.Component {
         super(props);
         this.state = {
             redirectToReferrer: false,
+            success: true,
             username:"",
             password:""
         }
@@ -37,14 +38,14 @@ class Login extends React.Component {
 
     handleSubmit(event){
         voucherToolbox.login((code, accessToken, refreshToken, success) => {
+            let tempState = this.state
             if (success === true) {
                 cookies.set('username', this.state.username, {path:'/'})
-                let tempState = this.state
                 tempState.redirectToReferrer = true
-                this.setState(tempState)
             } else {
-                //TODO add some indication that login didn't work
+                tempState.success = false
             }
+            this.setState(tempState)
         }, this.state.username, this.state.password)
         event.preventDefault();
     }
@@ -64,6 +65,7 @@ class Login extends React.Component {
                             <input type="password" placeholder="Password" onChange={this.handlePasswordChange}/>
                             <input type="submit" value="Login" id="loginButton"/>
                         </form>
+                        {this.state.success === true ? null : <p className="highlightText">Falsche Andmeldedaten</p>}
                     </div>
                 </div>
         );
