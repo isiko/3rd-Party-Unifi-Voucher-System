@@ -1,12 +1,14 @@
 ﻿import React from "react";
 import voucherToolbox from "../../../toolboxes/voucherToolbox";
 import {Redirect} from "react-router";
+import GeneralErrorMessage from "../../../components/errorMessage";
 
 class addUserScreen extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
             redirect: false,
+            success: true,
             username:"",
             password:""
         }
@@ -22,9 +24,9 @@ class addUserScreen extends React.Component{
     }
     
     handleSubmit(event){
-        voucherToolbox.addUser((code) => {
-            //TODO add error on failiour
-            this.setState({redirect: true, username:"", password:""})
+        voucherToolbox.addUser((code, request, data) => {
+            if (code === 200 && data[0].success === true) this.setState({redirect: true, success: true, username:"", password:""})
+            else this.setState({redirect: false, success: false, username:this.state.username, password:this.state.password})
         }, this.state.username, this.state.password)
         event.preventDefault()
     }
@@ -39,6 +41,7 @@ class addUserScreen extends React.Component{
                         <input type="password" id="password" onChange={this.handleFieldChange} placeholder="Passwort"/>
                         <input type="submit" value="Hinzufügen"/>
                     </form>
+                    {this.state.success === true ? null : <GeneralErrorMessage/>}
                 </div>
             : <Redirect to="/admin/userList"/>
         )

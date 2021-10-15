@@ -1,5 +1,6 @@
 import React from "react";
 import voucherToolbox from "../toolboxes/voucherToolbox";
+import GeneralErrorMessage from "../components/errorMessage";
 
 class ProfileScreen extends React.Component{
     formData = {oldPassword: "", newPassword: ""}
@@ -34,7 +35,7 @@ class ProfileScreen extends React.Component{
                         <input type="password" id="newPassword" onChange={this.handleFormChange} placeholder="New Password"/>
                         <input type="submit" value="Ändern"/>
                     </form>
-                    {this.state.success === true ? null : <p className="highlightText">Sorry, es gab einen Fehler :/</p>}
+                    {this.state.success === true ? null : <GeneralErrorMessage/>}
                 </div>
             </div>
         );

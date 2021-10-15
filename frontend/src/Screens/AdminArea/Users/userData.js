@@ -45,7 +45,6 @@ class adminUserDataScreen extends React.Component{
     getUser(callback) {
         voucherToolbox.listUsers((code, users) => {
             console.log("Loaded Users")
-            console.log(users[0])
             if (users.length === 1) callback(true, users[0])
             else callback(false, null)
         }, {id:this.state.id})

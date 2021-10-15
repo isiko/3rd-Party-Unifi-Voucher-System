@@ -2,6 +2,7 @@ import React from "react";
 import voucherToolbox from "../toolboxes/voucherToolbox";
 import TicketListEntry from "../components/voucherSummary";
 import LoadingIndicator from "../components/loader";
+import GeneralErrorMessage from "../components/errorMessage";
 
 class GeneratorScreen extends React.Component {
     defaultConfig = {
@@ -13,7 +14,8 @@ class GeneratorScreen extends React.Component {
         down: 1000,
         mb: 10000,
         tickets:[],
-        loading:false
+        loading:false,
+        success:true
     }
     constructor(props) {
         super(props);
@@ -51,6 +53,7 @@ class GeneratorScreen extends React.Component {
                     </table>
                     <input type="text" id="note" placeholder={"Bemerkung"} maxLength={50} onChange={this.handleFormChange}/>
                     <input type="submit" value="Erstelle Voucher"/>
+                    {this.state.success === true ? null : <GeneralErrorMessage/>}
                 </form>
                 <div id="tickets">
                     {this.state.loading? <LoadingIndicator/> : this.state.tickets && this.state.tickets.slice(0).reverse().map((ticket, index) => <TicketListEntry ticketData={ticket} key={index}/>)}
@@ -66,8 +69,12 @@ class GeneratorScreen extends React.Component {
     handleSubmit(event){
         this.editState("loading", true)
         voucherToolbox.createVoucher((code, data)=>{
-            this.editState("tickets", data)
             this.editState("loading", false)
+            if (code === 200) {
+                this.editState("tickets", data)
+            } else {
+                this.editState("success", false)
+            }
         }, this.state)
         event.preventDefault();
     }
