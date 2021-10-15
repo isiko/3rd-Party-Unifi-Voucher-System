@@ -42,7 +42,6 @@ function isLoggedIn() {
     return cookies.get('refreshToken') !== undefined;
 }
 
-//TODO Update Backend to send Auth-Level
 function login(callback, username, password) {
     console.log("Logging in")
     backendRequest((code, data)=>{
@@ -143,6 +142,7 @@ function changePasswordAsAdmin(callback, username, newPassword) {
 //endregion
 
 //region /vouchers
+//TODO Fix CORS error
 function createVoucher(callback, {
     minutes = null,
     count = null,
@@ -154,6 +154,8 @@ function createVoucher(callback, {
 }) {
     console.log("Creating Voucher")
     backendRequest((code, data) => {
+        console.log(code)
+        console.log(data)
         switch(code){
             case 200:
                 callback(code, data)
@@ -161,11 +163,8 @@ function createVoucher(callback, {
             case 403:
             case 500:
             default:
-                callback()
+                callback(code)
         }
-        if (code === 200) {
-            callback(code, data)
-        } else callback()
     },"/internal/vouchers", "POST", {
         minutes,
         count,
@@ -264,13 +263,13 @@ function addUsers(callback, users) {
     backendRequest((code, data) => {
         switch(code){
             case 201:
-                callback(code, true)
+                callback(code, true, data)
                 break;
             case 403:
             case 409:
             case 500:
             default:
-                callback(code, false)
+                callback(code, false, data)
         }
         if (code === 200) {
             callback(code, true)
