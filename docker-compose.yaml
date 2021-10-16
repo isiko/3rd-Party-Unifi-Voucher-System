@@ -13,13 +13,16 @@ services:
   frontend:
     container_name: unifi-voucher-frontend
     image: unifi-voucher-frontend
-    # enviroment variables dont actually do anything, u have to define them in .env
-    environment:
-      REACT_APP_BACKEND_PORT: 3000
-      REACT_APP_BACKEND_URL: PUT_YOUR_BACKEN_URL_HERE
+    # enviroment variables dont actually do anything, u have to define them in .env or via the Build Arguments
     build:
       context: ./frontend
       target: production
+      args:
+        REACT_APP_BACKEND_PORT: 3000
+        REACT_APP_BACKEND_URL: http://localhost
+        REACT_APP_SYSTEM_NAME: UniFi Voucher System
+        REACT_APP_GENERAL_ERROR_MESSAGE: Sorry, es gab nen Fehler, versuch das doch einfach nachher nochmal
+        REACT_APP_NOT_FOUND_ERROR_MESSAGE: Sorry, wir haben leider nix gefunden
     ports:
       - 80:80
     volumes:
